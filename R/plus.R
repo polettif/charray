@@ -8,5 +8,9 @@
     if(is.character(e1) && is.character(e2)) {
         return(paste0(e1, e2))
     }
+    if((!is.character(e1) && is.character(e2)) ||
+       (is.character(e1) && !is.character(e2))) {
+        stop("Types do not match", call. = FALSE)
+    }
     .Primitive("+")(e1, e2)
 }

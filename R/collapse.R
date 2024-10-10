@@ -9,6 +9,6 @@
 #' @examples
 #' collapse(c("a", "b", "c"), "-")
 collapse = function(vec, sep = "") {
-    stopifnot(length(sep) == 1)
+    stopifnot(length(sep) == 1, is.character(sep))
     paste(vec, collapse = sep)
 }

@@ -15,6 +15,11 @@ test_that("[<-", {
     x[2:3] <- c("B", "C")
     x[4:5] <- "."
     expect_equal(x, "aBC..fgh")
+    expect_error({ x[1:2] <- "XYZ" },
+                 "Number of characters is not equal to number of replacement indices")
+    x[1:2] <- "XY"
+    expect_equal(x, "XYC..fgh")
+    expect_error({ x[1:3] <- as.character(1:2) }, "length of i and value are not equal")
 
     y = c(204,6502,57)
     y[1] <- 0

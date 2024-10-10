@@ -33,6 +33,9 @@
 `[<-` = function(x, i, ..., value) {
     if(is.character(x) && length(x) == 1) {
         if(length(value) == 1 && nchar(value) > 1) {
+            if(nchar(value) != length(i)) {
+                stop("Number of characters is not equal to number of replacement indices")
+            }
             value <- strsplit(value, "")[[1]]
         }
 
@@ -40,8 +43,9 @@
         index = i
         index <- index[index >= 1]
         index <- index[index <= length(x_split)]
-        stopifnot(length(index) == length(value) |
-                      length(value) == 1)
+        if(!(length(index) == length(value) || length(value) == 1)) {
+            stop("length of i and value are not equal")
+        }
 
         x_split[index] <- value
         return(paste(x_split, collapse = ""))
