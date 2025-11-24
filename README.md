@@ -16,4 +16,9 @@ x
 
 "combine" + " strings"
 #> [1] "combine strings"
+
+# Vectors with length > 1 still work as normal
+vec = c("ABC", "x", "Other string")
+vec[3]
+#> [1] "Other string"
 ```
